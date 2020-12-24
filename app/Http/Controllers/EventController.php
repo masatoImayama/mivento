@@ -12,10 +12,11 @@ class EventController extends Controller
 	public function index()
 	{
 
-		$this->page_tag = "event";
+		$this->page_tag = "event_list";
 		$this->page_title = "イベント";
 
 		return view('event.event')->with([
+			"directory" => $this->directory,
 			"page_tag" => $this->page_tag,
 			"page_title" => $this->page_title,
 		]);

@@ -15,6 +15,9 @@ use Illuminate\Support\Facades\Route;
 
 use App\Http\Controllers\EventController;
 
-Route::get('/', 'App\Http\Controllers\EventController@index');
+// Route::get('/', 'App\Http\Controllers\EventController@index');
 
-Route::get('/event', [EventController::class, 'index']);
+// Route::get('/event', [EventController::class, 'index']);
+Auth::routes();
+
+Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
