@@ -5,15 +5,21 @@
 @endsection
 
 @section('content')
-<div class="content content-customize">
-        <div class="container-fluid">
-            <div class="row">
+<div class="container">
+    <div class="row justify-content-center">
+        <div class="col-md-10">
+            <div class="card">
+                <div class="card-header">イベント一覧</div>
 
-                <div class="col-md-12">
-                    <p>イベント一覧</p>
+                <div class="card-body">
+                    <form method="POST" action="">
+                        @csrf
+
+
+                    </form>
                 </div>
-            </div><!-- /.row -->
-        </div><!-- /.container-fluid -->
-    </div><!-- /.content -->
-
+            </div>
+        </div>
+    </div>
+</div>
 @endsection
