@@ -1,4 +1,4 @@
-@extends('layouts.default')
+@extends('layouts.app')
 
 @section('css')
 
@@ -10,7 +10,7 @@
             <div class="row">
 
                 <div class="col-md-12">
-                    <p>イベント一覧</p>
+                    <p>イベント編集</p>
                 </div>
             </div><!-- /.row -->
         </div><!-- /.container-fluid -->

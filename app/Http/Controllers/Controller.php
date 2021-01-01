@@ -9,9 +9,5 @@ use Illuminate\Routing\Controller as BaseController;
 
 class Controller extends BaseController
 {
-    var $directory = "";
-	var $page_tag = "";
-    var $page_title = "";
-    
     use AuthorizesRequests, DispatchesJobs, ValidatesRequests;
 }

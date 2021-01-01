@@ -13,11 +13,16 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
+use App\Http\Controllers\BoardController;
 use App\Http\Controllers\EventController;
 
-// Route::get('/', 'App\Http\Controllers\EventController@index');
-
-// Route::get('/event', [EventController::class, 'index']);
 Auth::routes();
 
-Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+Route::group(['middleware' => 'auth'], function() {
+    // この中に定義すれば、ログインユーザのみアクセス可能なルート定義が可能
+    Route::redirect('/', 'boards');
+    Route::get('/boards', [App\Http\Controllers\BoardController::class, 'index'])->name('boards');
+    Route::get('/events', [App\Http\Controllers\EventController::class, 'index'])->name('events');
+    Route::get('/event/{hash_key}', [App\Http\Controllers\EventController::class, 'edit'])->name('event.edit');
+});
+
