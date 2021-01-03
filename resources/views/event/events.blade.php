@@ -18,11 +18,11 @@
                         <table class="table">
                             <thead>
                                 <tr>
-                                    <th>イベント名</th>
-                                    <th>日程</th>
-                                    <th>ステータス</th>
-                                    <th>編集</th>
-                                    <th>削除</th>
+                                    <th>{{ __('wording.event_name') }}</th>
+                                    <th>{{ __('wording.schedule') }}</th>
+                                    <th>{{ __('wording.status') }}</th>
+                                    <th>{{ __('wording.edit') }}</th>
+                                    <th>{{ __('wording.delete') }}</th>
                                 </tr>
                             </thead>
                             <tbody>

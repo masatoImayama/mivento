@@ -18,9 +18,9 @@
                         <table class="table">
                             <thead>
                                 <tr>
-                                    <th>ボード名</th>
-                                    <th>ステータス</th>
-                                    <th>削除</th>
+                                    <th>{{ __('wording.board_name') }}</th>
+                                    <th>{{ __('wording.status') }}</th>
+                                    <th>{{ __('wording.delete') }}</th>
                                 </tr>
                             </thead>
                             <tbody>
