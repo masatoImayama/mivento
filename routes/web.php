@@ -22,7 +22,7 @@ Route::group(['middleware' => 'auth'], function() {
     // この中に定義すれば、ログインユーザのみアクセス可能なルート定義が可能
     Route::redirect('/', 'boards');
     Route::get('/boards', [App\Http\Controllers\BoardController::class, 'index'])->name('boards');
-    Route::get('/events', [App\Http\Controllers\EventController::class, 'index'])->name('events');
+    Route::get('/events/{id_board}', [App\Http\Controllers\EventController::class, 'index'])->name('events');
     Route::get('/event/{hash_key}', [App\Http\Controllers\EventController::class, 'edit'])->name('event.edit');
 });
 

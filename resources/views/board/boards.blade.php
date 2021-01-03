@@ -25,17 +25,17 @@
                             </thead>
                             <tbody>
                                 <tr>
-                                    <td><a href="">テストボード1</a></td>
+                                    <td><a href="{{ route('events', ['id_board' => 1]) }}">テストボード1</a></td>
                                     <td>公開中</td>
                                     <td><input type="button" value="削除" /></td>
                                 </tr>
                                 <tr>
-                                    <td><a href="">テストボード2</a></td>
+                                    <td><a href="{{ route('events', ['id_board' => 2]) }}">テストボード2</a></td>
                                     <td>非公開</td>
                                     <td><input type="button" value="削除" /></td>
                                 </tr>
                                 <tr>
-                                    <td><a href="">テストボード3</a></td>
+                                    <td><a href="{{ route('events', ['id_board' => 3]) }}">テストボード3</a></td>
                                     <td>公開中</td>
                                     <td><input type="button" value="削除" /></td>
                                 </tr>
