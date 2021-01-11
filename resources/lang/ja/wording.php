@@ -5,6 +5,8 @@ return [
     'add' => '追加',
     'edit' => '編集',
     'delete' => '削除',
+    'regist' => '登録',
+    'back' => '戻る',
 
     // menu
     'menu_boards' => 'ボード一覧',
@@ -14,6 +16,8 @@ return [
     
     // event
     'event_name' => 'イベント名',
+    'header_image' => 'ヘッダー画像',
+    'header_image_preview' => 'プレビュー',
     'schedule' => '日程',
     'overview' => 'イベント概要',
 
