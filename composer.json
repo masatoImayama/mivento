@@ -37,6 +37,10 @@
     "autoload": {
         "psr-4": {
             "App\\": "app/",
+            "App\\Repositories\\": "app/Repositories/",
+            "App\\Domain\\": "app/Domain/",
+            "App\\Domain\\Entity\\": "app/Domain/Entity/",
+            "App\\Domain\\ValueObject\\": "app/Domain/ValueObject/",
             "Database\\Factories\\": "database/factories/",
             "Database\\Seeders\\": "database/seeders/"
         }
