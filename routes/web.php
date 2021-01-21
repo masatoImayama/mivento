@@ -18,11 +18,14 @@ use App\Http\Controllers\EventController;
 
 Auth::routes();
 
-Route::group(['middleware' => 'auth'], function() {
+Route::group(['middleware' => ['auth', 'web']], function() {
     // この中に定義すれば、ログインユーザのみアクセス可能なルート定義が可能
     Route::redirect('/', 'boards');
     Route::get('/boards', [App\Http\Controllers\BoardController::class, 'index'])->name('boards');
     Route::get('/events/{hash_key}', [App\Http\Controllers\EventController::class, 'index'])->name('events');
     Route::get('/event/{hash_key}', [App\Http\Controllers\EventController::class, 'edit'])->name('event.edit');
+
+    Route::post('/board_status_change', [App\Http\Controllers\BoardController::class, 'boardStatusChange'])->name('board_status_change');
+    Route::post('/board_delete', [App\Http\Controllers\BoardController::class, 'boardDelete'])->name('board_delete');
 });
 

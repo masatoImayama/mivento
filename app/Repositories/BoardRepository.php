@@ -10,6 +10,7 @@ use App\Domain\ValueObject\userId;
 use App\Domain\ValueObject\boardHashCode;
 use App\Domain\ValueObject\boardName;
 use App\Domain\ValueObject\boardDescription;
+use App\Domain\ValueObject\boardStatus;
 
 class BoardRepository
 {
@@ -18,14 +19,41 @@ class BoardRepository
 
         $rtn_collection = collect();
         foreach ($user_boards as $key => $val) {
-            $board = BoardEntity::Reconstruct(
-                boardHashCode::Reconstruct($val->hash_key),
-                boardName::Reconstruct($val->board_name),
-                boardDescription::Reconstruct($val->description)
-            );
+            $board = self::boardEntityReconstruct($val);
             $rtn_collection->push($board);
         }
 
         return $rtn_collection;
+    }
+
+    public static function find(boardHashCode $hash_code) {
+        $board = Board::where('hash_key', $hash_code->getValue())->first();
+
+        if ($board === null) {
+            return null;
+        }
+
+        return self::boardEntityReconstruct($board);
+    }
+
+    public static function update(BoardEntity $boardEntity) {
+        $board = Board::where('hash_key', $boardEntity->getBoardHashCode()->getValue())->first();
+        $board->board_name = $boardEntity->getboardName()->getValue();
+        $board->board_description = $boardEntity->getboardDescription()->getValue();
+        $board->status = $boardEntity->getStatus()->getValue();
+        $board->save();
+    }
+
+    public static function delete(BoardEntity $boardEntity) {
+        $board = Board::where('hash_key', $boardEntity->getBoardHashCode()->getValue())->first();
+        $board->delete();
+    }
+
+    private static function boardEntityReconstruct($board) {
+        return BoardEntity::Reconstruct(
+            boardHashCode::Reconstruct($board->hash_key),
+            boardName::Reconstruct($board->board_name),
+            boardDescription::Reconstruct($board->description),
+            boardStatus::Reconstruct($board->status));
     }
 }

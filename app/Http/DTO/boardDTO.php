@@ -9,7 +9,7 @@ class boardDTO
 	public static function convert(BoardEntity $board)
 	{        
         $arr = array(
-            "hash_code" => $board->getBoardHashCode()->getValue(),
+            "hash_key" => $board->getBoardHashCode()->getValue(),
             "board_name" => $board->getBoardName()->getValue(),
             "description" => $board->getBoardDescription()->getValue(),
         );

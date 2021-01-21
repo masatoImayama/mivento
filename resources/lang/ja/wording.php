@@ -8,6 +8,9 @@ return [
     'regist' => '登録',
     'back' => '戻る',
 
+    'open' => '公開',
+    'close' => '非公開',
+
     // menu
     'menu_boards' => 'ボード一覧',
 
