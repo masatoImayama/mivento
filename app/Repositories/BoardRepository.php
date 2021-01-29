@@ -36,12 +36,26 @@ class BoardRepository
         return self::boardEntityReconstruct($board);
     }
 
-    public static function update(BoardEntity $boardEntity) {
+    public static function add(userId $userId, BoardEntity $boardEntity) {
+        // 新規登録
+        $board_new = new Board();
+        $board_new->create([
+            'hash_key' => $boardEntity->getBoardHashCode()->getValue(),
+            'board_name' => $boardEntity->getboardName()->getValue(),
+            'description' => $boardEntity->getboardDescription()->getValue(),
+            'status' => $boardEntity->getStatus()->getValue(),
+            'created_by' => $userId->getValue()
+        ]);            
+    }
+
+    public static function save(BoardEntity $boardEntity) {
         $board = Board::where('hash_key', $boardEntity->getBoardHashCode()->getValue())->first();
+
+        // 更新
         $board->board_name = $boardEntity->getboardName()->getValue();
         $board->description = $boardEntity->getboardDescription()->getValue();
         $board->status = $boardEntity->getStatus()->getValue();
-        $board->save();
+        $board->save();    
     }
 
     public static function delete(BoardEntity $boardEntity) {

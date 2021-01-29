@@ -25,6 +25,10 @@ Route::group(['middleware' => ['auth', 'web']], function() {
     Route::get('/events/{hash_key}', [App\Http\Controllers\EventController::class, 'index'])->name('events');
     Route::get('/event/{hash_key}', [App\Http\Controllers\EventController::class, 'edit'])->name('event.edit');
 
+    Route::get('/board_form/{hash_key?}', [App\Http\Controllers\BoardController::class, 'boardForm'])->name('board_form');
+    Route::post('/board_confirm', [App\Http\Controllers\BoardController::class, 'boardConfirm'])->name('board_confirm');
+    Route::post('/board_regist', [App\Http\Controllers\BoardController::class, 'boardRegist'])->name('board_regist'); 
+
     Route::post('/board_status_change', [App\Http\Controllers\BoardController::class, 'boardStatusChange'])->name('board_status_change');
     Route::post('/board_delete', [App\Http\Controllers\BoardController::class, 'boardDelete'])->name('board_delete');
 });

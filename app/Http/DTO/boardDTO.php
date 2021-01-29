@@ -12,6 +12,7 @@ class boardDTO
             "hash_key" => $board->getBoardHashCode()->getValue(),
             "board_name" => $board->getBoardName()->getValue(),
             "description" => $board->getBoardDescription()->getValue(),
+            "status" => $board->getStatus()->getValue(),
         );
 
         return $arr;

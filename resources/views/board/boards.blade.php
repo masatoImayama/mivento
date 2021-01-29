@@ -44,6 +44,10 @@
             return;
         }
     }
+
+    function board_add() {
+        location.href = "{{ route('board_form') }}";
+    }
 @endsection
 
 @section('content')
@@ -65,6 +69,12 @@
                 <div class="card-body">
                     <form method="POST" name="form" action="">
                         @csrf
+                        <div class="form-group row">
+                            <div class="col-md-6"></div>
+                            <div class="col-md-6 text-right">
+                                <input type="button" class="btn btn-outline-primary" style="width:100px;" value="{{ __('wording.add') }}" onclick="board_add();" />
+                            </div>
+                        </div>
 
                         <table class="table">
                             <thead>
@@ -79,9 +89,16 @@
                                 <tr>
                                     <td><a href="{{ route('events', ['hash_key' => $board['hash_key'] ]) }}">{{$board['board_name']}}</a></td>
                                     <td>
-                                        {{ __('wording.open') }}
-                                        &nbsp;&nbsp;
-                                        <input type="button" name="status_close" value="{{ __('wording.close') }}" onclick="board_status_change('{{{ $board['hash_key'] }}}', {{{ config('const.status.close') }}});" />
+                                        @if($board['status'] === config('const.status.open'))
+                                            {{ __('wording.open') }}
+                                            &nbsp;&nbsp;
+                                            <input type="button" name="status_close" value="{{ __('wording.close') }}" onclick="board_status_change('{{{ $board['hash_key'] }}}', {{{ config('const.status.close') }}});" />
+                                        @else
+                                            {{ __('wording.close') }}
+                                            <input type="button" name="status_open" value="{{ __('wording.open') }}" onclick="board_status_change('{{{ $board['hash_key'] }}}', {{{ config('const.status.open') }}});" />
+                                        @endif
+
+
                                     </td>
                                     <td><input type="button" name="delete" value="{{ __('wording.delete') }}" onclick="board_delete('{{{ $board['hash_key'] }}}');" /></td>
                                 </tr>

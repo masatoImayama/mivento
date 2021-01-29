@@ -17,6 +17,7 @@ class Board extends Model
     protected $fillable = [
         'board_name',
         'description',
+        'status',
         'hash_key',
         'created_by',
         'updated_by',

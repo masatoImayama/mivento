@@ -71,5 +71,15 @@ class BoardEntity
         $board_status = boardStatus::SetNew($status);
         $this->_status = $board_status;
     }
+
+    public function setBoardName($name) {
+        $board_name = boardName::SetNew($name);
+        $this->_boardName = $board_name;
+    }
+
+    public function setBoardDescription($description) {
+        $board_description = boardDescription::SetNew($description);
+        $this->_boardDescription = $board_description;
+    }
     
 }

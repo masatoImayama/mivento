@@ -13,6 +13,7 @@ use App\Repositories\BoardRepository;
 use App\Http\DTO\boardDTO;
 
 use App\ApplicationService\BoardApplicationService;
+use App\ApplicationService\Commands\BoardRegistCommand;
 use App\ApplicationService\Commands\BoardStatusChangeCommand;
 use App\ApplicationService\Commands\BoardDeleteCommand;
 
@@ -35,6 +36,46 @@ class BoardController extends Controller
 		]);
 	}
 
+	public function boardForm($hash_key = null) {
+		if ($hash_key === null) {
+			// 新規追加
+			$board = array();
+		} else {
+			// 編集
+			// TODO:データ取得
+			$board = array();
+		}
+
+		return view('board.board_form')->with($board);
+	}
+
+	public function boardConfirm(Request $request) {
+		// チェック処理
+		$validatedData = $request->validate([
+			'board_name' => 'required|string|max:256',
+			'description' => 'nullable|string|max:1500',
+		]);
+
+		return view('board.board_confirm')->with($request->all());
+	}
+
+	public function boardRegist(Request $request) {
+		try {
+			if ($request->has('back')) {
+				return redirect('board_form')->withInput();
+			}
+
+			// 登録更新処理
+			$command = new BoardRegistCommand($request->input("board_name"), $request->input("description"));
+			BoardApplicationService::addBoard($command);
+
+
+			// TODO:完了通知表示用の処理追加？
+			return redirect('boards');
+		} catch (Exception $e) {
+			throw new Exception($e);
+		}
+	}
 
 	public function boardStatusChange(Request $request) {
 		// パラメータチェック
@@ -62,6 +103,14 @@ class BoardController extends Controller
 		]);
 
 		// 削除
+		try {
+			$command = new BoardDeleteCommand($request->input("hash_key"));
+			BoardApplicationService::delete($command);
+
+			return redirect('boards');
+		} catch (Exception $e) {
+			throw new Exception($e);
+		}
 
 
 		return redirect('boards');

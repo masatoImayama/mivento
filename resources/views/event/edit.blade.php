@@ -52,7 +52,7 @@
                             <label for="overview" class="col-md-4 col-form-label text-md-right">{{ __('wording.overview') }}</label>
 
                             <div class="col-md-6">
-                                <textarea id="overview" rows="15" style="width:100%">
+                                <textarea id="overview" class="form-control" rows="15">
                                 </textarea>
                             </div>
                         </div>
