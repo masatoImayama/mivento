@@ -47,6 +47,8 @@ class BoardController extends Controller
 		try {
 			$command = new BoardStatusChangeCommand($request->input("hash_key"), $request->input("status"));
 			BoardApplicationService::statusChange($command);
+
+			return redirect('boards');
 		} catch (Exception $e) {
 			throw new Exception($e);
 		}
@@ -60,5 +62,8 @@ class BoardController extends Controller
 		]);
 
 		// 削除
+
+
+		return redirect('boards');
 	}	
 }

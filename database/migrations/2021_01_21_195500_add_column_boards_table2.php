@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class addColumnBoardsTable1 extends Migration
+class addColumnBoardsTable2 extends Migration
 {
     /**
      * Run the migrations.

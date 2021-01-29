@@ -5,8 +5,9 @@
 @endsection
 
 @section('script')
-    function confirm_status_change(hash_key, status) {
-        if (confirm({{ __('message.confirm_status_change') }})) {
+    function board_status_change(hash_key, status) {
+
+        if (confirm("{{ __('messages.confirm_status_change') }}")) {
             document.form.action = "{{ route('board_status_change') }}";
 
             var input_data = document.createElement('input');
@@ -27,8 +28,9 @@
         }
     }
 
-    function confirm_delete(hash_key) {
-        if (confirm({{ __('message.confirm_delete') }})) {
+    function board_delete(hash_key) {
+
+        if (confirm("{{ __('messages.confirm_delete') }}")) {
             document.form.action = "{{ route('board_delete') }}";
 
             var input_data = document.createElement('input');
@@ -79,9 +81,9 @@
                                     <td>
                                         {{ __('wording.open') }}
                                         &nbsp;&nbsp;
-                                        <input type="submit" name="status_close" value="{{ __('wording.close') }}" onClick="status_change({{$board['hash_key']}}, config('const.status.close'))" />
+                                        <input type="button" name="status_close" value="{{ __('wording.close') }}" onclick="board_status_change('{{{ $board['hash_key'] }}}', {{{ config('const.status.close') }}});" />
                                     </td>
-                                    <td><input type="submit" name="delete" value="{{ __('wording.delete') }}" onClick="delete({{$board['hash_key']}})" /></td>
+                                    <td><input type="button" name="delete" value="{{ __('wording.delete') }}" onclick="board_delete('{{{ $board['hash_key'] }}}');" /></td>
                                 </tr>
                                 @endforeach
                             </tbody>

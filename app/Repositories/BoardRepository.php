@@ -26,8 +26,8 @@ class BoardRepository
         return $rtn_collection;
     }
 
-    public static function find(boardHashCode $hash_code) {
-        $board = Board::where('hash_key', $hash_code->getValue())->first();
+    public static function find($hash_code) {
+        $board = Board::where('hash_key', $hash_code)->first();
 
         if ($board === null) {
             return null;
@@ -39,7 +39,7 @@ class BoardRepository
     public static function update(BoardEntity $boardEntity) {
         $board = Board::where('hash_key', $boardEntity->getBoardHashCode()->getValue())->first();
         $board->board_name = $boardEntity->getboardName()->getValue();
-        $board->board_description = $boardEntity->getboardDescription()->getValue();
+        $board->description = $boardEntity->getboardDescription()->getValue();
         $board->status = $boardEntity->getStatus()->getValue();
         $board->save();
     }
