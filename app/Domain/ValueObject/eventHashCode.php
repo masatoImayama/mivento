@@ -6,20 +6,20 @@ use Exception;
 use Illuminate\Support\Facades\Validator;
 
 /**
- * ボードのハッシュコード ValueObject
+ * イベントのハッシュコード ValueObject
  */
-class boardHashCode
+class eventHashCode
 {
-    private $_boardHashCode;
+    private $_eventHashCode;
 
     public function getValue() {
-        return $this->_boardHashCode;
+        return $this->_eventHashCode;
     }
 
 
-    private function __construct($boardHashCode)
+    private function __construct($eventHashCode)
     {
-        $this->_boardHashCode = $boardHashCode;
+        $this->_eventHashCode = $eventHashCode;
     }
 
     // 新規設定用
@@ -31,13 +31,13 @@ class boardHashCode
     }
 
     // リポジトリからの読み出し用
-    public static function Reconstruct($boardHashCode) {
-        return new self($boardHashCode);
+    public static function Reconstruct($eventHashCode) {
+        return new self($eventHashCode);
     }
 
-    // private static function IsValid($boardHashCode) {
-    //     $validator = Validator::make(['boardHashCode' => $boardHashCode], [
-    //         'boardHashCode' => 'string|max:255',
+    // private static function IsValid($eventHashCode) {
+    //     $validator = Validator::make(['eventHashCode' => $eventHashCode], [
+    //         'eventHashCode' => 'string|max:255',
     //     ]);
 
     //     return !$validator->fails();

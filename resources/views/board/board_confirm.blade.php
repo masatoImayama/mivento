@@ -39,6 +39,7 @@
                             <div class="col-md-6 text-center">
                                 <input type="submit" name="back" class="btn btn-outline-secondary" style="width:100px;" value="{{ __('wording.back') }}" />
                                 <input type="submit" name="board_regist" id="board_regist" class="btn btn-outline-primary" style="width:100px;" value="{{ __('wording.regist') }}" />
+                                <input type="hidden" name="hash_key" value="{{ $hash_key ?? '' }}">
                             </div>
                             <div class="col-md-3"></div>
                         </div>

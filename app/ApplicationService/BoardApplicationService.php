@@ -26,7 +26,7 @@ class BoardApplicationService
     public static function addBoard(BoardRegistCommand $command) {
         try {
             $board = BoardEntity::SetNew(
-                boardHashCode::SetNew(),
+                boardHashCode::SetNew(userId::SetNew(Auth::user()->id)),
                 boardName::SetNew($command->getBoardName()),
                 boardDescription::SetNew($command->getDescription()),
                 boardStatus::SetNew(Config::get('const.status.open')) // デフォルトは「公開」状態
@@ -56,7 +56,8 @@ class BoardApplicationService
                 $board->setBoardDescription($command->getDescription());
             }
 
-            BoardRepository::save($board);
+            $userId = userId::Reconstruct(Auth::user()->id);
+            BoardRepository::save($userId, $board);
             
         } catch (Exception $e) {
             throw $e;
@@ -75,7 +76,8 @@ class BoardApplicationService
             // ステータス変更
             $board->statusChange($command->getStatus());
 
-            BoardRepository::save($board);
+            $userId = userId::Reconstruct(Auth::user()->id);
+            BoardRepository::save($userId, $board);
 
             return true;
         } catch (Exception $e) {

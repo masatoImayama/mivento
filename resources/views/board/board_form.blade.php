@@ -31,11 +31,11 @@
                     <div class="card-body">
                         <div class="form-group">
                             <label for="board_name">{{ __('wording.board_name') }}</label>
-                            <input type="text" class="form-control" name="board_name" id="board_name" placeholder="{{ __('wording.board_name') }}" value="{{ old('board_name')}}">
+                            <input type="text" class="form-control" name="board_name" id="board_name" placeholder="{{ __('wording.board_name') }}" value="{{ $board_name ?? old('board_name')}}">
                         </div>
                         <div class="form-group">
                             <label for="board_description">{{ __('wording.board_description') }}</label>
-                            <textarea id="board_description" name="description" class="form-control" rows="5">{{ old('description')}}</textarea>
+                            <textarea id="board_description" name="description" class="form-control" rows="5">{{ $description ?? old('description')}}</textarea>
                         </div>
                     </div>
 
@@ -45,6 +45,7 @@
                             <div class="col-md-6 text-center">
                                 <input type="button" class="btn btn-outline-secondary" style="width:100px;" value="{{ __('wording.back') }}" onclick="page_back();" />
                                 <input type="submit" name="board_confirm" id="board_confirm" class="btn btn-outline-primary" style="width:100px;" value="{{ __('wording.confirm') }}" />
+                                <input type="hidden" name="hash_key" value="{{ $hash_key ?? '' }}">
                             </div>
                             <div class="col-md-3"></div>
                         </div>

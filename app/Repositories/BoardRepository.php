@@ -48,13 +48,14 @@ class BoardRepository
         ]);            
     }
 
-    public static function save(BoardEntity $boardEntity) {
+    public static function save(userId $userId, BoardEntity $boardEntity) {
         $board = Board::where('hash_key', $boardEntity->getBoardHashCode()->getValue())->first();
 
         // 更新
         $board->board_name = $boardEntity->getboardName()->getValue();
         $board->description = $boardEntity->getboardDescription()->getValue();
         $board->status = $boardEntity->getStatus()->getValue();
+        $board->updated_by = $userId->getValue();  
         $board->save();    
     }
 

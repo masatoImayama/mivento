@@ -48,6 +48,10 @@
     function board_add() {
         location.href = "{{ route('board_form') }}";
     }
+
+    function board_edit(hash_key) {
+        location.href = "{{ route('board_form') }}/" + hash_key ;
+    }
 @endsection
 
 @section('content')
@@ -81,6 +85,7 @@
                                 <tr>
                                     <th>{{ __('wording.board_name') }}</th>
                                     <th>{{ __('wording.status') }}</th>
+                                    <th>{{ __('wording.edit') }}</th>
                                     <th>{{ __('wording.delete') }}</th>
                                 </tr>
                             </thead>
@@ -100,6 +105,7 @@
 
 
                                     </td>
+                                    <td><input type="button" name="delete" value="{{ __('wording.edit') }}" onclick="board_edit('{{{ $board['hash_key'] }}}');" /></td>
                                     <td><input type="button" name="delete" value="{{ __('wording.delete') }}" onclick="board_delete('{{{ $board['hash_key'] }}}');" /></td>
                                 </tr>
                                 @endforeach

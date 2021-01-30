@@ -42,8 +42,9 @@ class BoardController extends Controller
 			$board = array();
 		} else {
 			// 編集
-			// TODO:データ取得
 			$board = array();
+			$board = BoardRepository::find($hash_key);
+			$board = boardDTO::convert($board);
 		}
 
 		return view('board.board_form')->with($board);
@@ -65,10 +66,14 @@ class BoardController extends Controller
 				return redirect('board_form')->withInput();
 			}
 
-			// 登録更新処理
 			$command = new BoardRegistCommand($request->input("board_name"), $request->input("description"));
-			BoardApplicationService::addBoard($command);
-
+			if (!empty($request->input("hash_key"))) {
+				// 更新処理
+				BoardApplicationService::updateBoard($request->input("hash_key"), $command);
+			} else {
+				// 登録処理
+				BoardApplicationService::addBoard($command);
+			}
 
 			// TODO:完了通知表示用の処理追加？
 			return redirect('boards');

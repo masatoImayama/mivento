@@ -19,6 +19,8 @@ class BoardEntity
     private $_boardName;
     private $_boardDescription;
     private $_status;
+    private $_created_by;
+    private $_updated_by;
 
     private function __construct(boardHashCode $boardHashCode, boardName $boardName, boardDescription $boardDescription, boardStatus $status)
     {
