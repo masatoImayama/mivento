@@ -32,7 +32,7 @@ class EventEntity
         $this->_eventHashCode = $eventHashCode;
         $this->_eventName = $eventName;
         $this->_eventDescription = $eventDescription;
-        $this->status = $status;
+        $this->_status = $status;
         $this->_eventStartDatetime = $eventStartDatetime;
         $this->_eventEndDatetime = $eventEndDatetime;
     }

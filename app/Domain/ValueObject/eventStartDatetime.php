@@ -37,7 +37,7 @@ class eventStartDatetime
 
     private static function IsValid($eventStartDatetime) {
         $validator = Validator::make(['eventStartDatetime' => $eventStartDatetime], [
-            'eventStartDatetime' => 'date_format',
+            'eventStartDatetime' => 'date_format:Y-m-d H:i',
         ]);
 
         return !$validator->fails();

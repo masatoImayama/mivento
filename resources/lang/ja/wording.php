@@ -26,6 +26,6 @@ return [
     'header_image_preview' => 'プレビュー',
     'start_datetime' => '開始日時',
     'end_datetime' => '終了日時',
-    'overview' => 'イベント概要',
+    'event_description' => 'イベント概要',
 
 ];

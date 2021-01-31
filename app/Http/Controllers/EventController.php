@@ -52,12 +52,13 @@ class EventController extends Controller
 
 	public function eventRegist(Request $request) {
 		try {
+			$board_hash_key = $request->input("board_hash_key");
 			if ($request->has('back')) {
-				return redirect('event_form')->withInput();
+				return redirect()->route('event_form', ['board_hash_key' => $board_hash_key])->withInput();
 			}
 
 			$command = new EventRegistCommand(
-				$request->input("board_hash_key"),
+				$board_hash_key,
 				$request->input("event_name"), 
 				$request->input("description"),
 				$request->input("event_start_datetime"),
@@ -72,7 +73,7 @@ class EventController extends Controller
 			}
 
 			// TODO:完了通知表示用の処理追加？
-			return redirect('events');
+			return redirect()->route('events', ['hash_key' => $command->getBoardHashCode()]);
 		} catch (Exception $e) {
 			throw new Exception($e);
 		}

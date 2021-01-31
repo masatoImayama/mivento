@@ -16,13 +16,13 @@ return [
     'accepted'             => ':attributeを承認してください。',
     'active_url'           => ':attributeが有効なURLではありません。',
     'after'                => ':attributeには、:dateより後の日付を指定してください。',
-    'after_or_equal'       => ':attributeには、:date以前の日付を指定してください。',
+    'after_or_equal'       => ':attribute>=:dateになるように指定してください。',
     'alpha'                => ':attributeはアルファベットのみがご利用できます。',
     'alpha_dash'           => ':attributeはアルファベットとダッシュ(-)及び下線(_)がご利用できます。',
     'alpha_num'            => ':attributeはアルファベット数字がご利用できます。',
     'array'                => ':attributeは配列でなくてはなりません。',
     'before'               => ':attributeには、:dateより前の日付をご利用ください。',
-    'before_or_equal'      => ':attributeには、:date以前の日付をご利用ください。',
+    'before_or_equal'      => ':attribute<:dateになるように指定してください。',
     'between'              => [
         'numeric' => ':attributeは、:minから:maxの間で指定してください。',
         'file'    => ':attributeは、:min kBから、:max kBの間で指定してください。',
@@ -144,6 +144,8 @@ return [
     'attributes' => [
         'board_name' => 'ボード名',
         'description' => '概要',
+        'event_start_datetime' => '開始日時',
+        'event_end_datetime' => '終了日時',
     ],
 
 ];

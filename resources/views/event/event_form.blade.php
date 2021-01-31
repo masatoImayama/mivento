@@ -70,10 +70,10 @@
                         </div>
 
                         <div class="form-group row">
-                            <label for="description" class="col-md-4 col-form-label text-md-right">{{ __('wording.overview') }}</label>
+                            <label for="description" class="col-md-4 col-form-label text-md-right">{{ __('wording.event_description') }}</label>
 
                             <div class="col-md-6">
-                                <textarea id="description" class="form-control" rows="15">{{ $event['description'] ?? old('description')}}</textarea>
+                                <textarea id="description" name="description" class="form-control" rows="15">{{ $event['description'] ?? old('description')}}</textarea>
                             </div>
                         </div>
                     </div>

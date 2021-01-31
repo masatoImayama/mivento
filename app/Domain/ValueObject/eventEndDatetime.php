@@ -37,7 +37,7 @@ class eventEndDatetime
 
     private static function IsValid($eventEndDatetime) {
         $validator = Validator::make(['eventEndDatetime' => $eventEndDatetime], [
-            'eventEndDatetime' => 'date_format',
+            'eventEndDatetime' => 'date_format:Y-m-d H:i',
         ]);
 
         return !$validator->fails();

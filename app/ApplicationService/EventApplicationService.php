@@ -37,7 +37,7 @@ class EventApplicationService
     public static function addEvent(EventRegistCommand $command) {
         try {
             $event = EventEntity::SetNew(
-                boardHashCode::SetNew($command->getBoardHashCode()),
+                boardHashCode::Reconstruct($command->getBoardHashCode()),
                 eventHashCode::SetNew(userId::SetNew(Auth::user()->id)),
                 eventName::SetNew($command->getEventName()),
                 eventDescription::SetNew($command->getDescription()),
