@@ -11,37 +11,37 @@ use Illuminate\Support\Facades\Config;
 /**
  * ボードステータス ValueObject
  */
-class boardStatus
+class status
 {
-    private $_boardStatus;
+    private $_status;
 
     public function getValue() {
-        return $this->_boardStatus;
+        return $this->_status;
     }
 
 
-    private function __construct($boardStatus)
+    private function __construct($status)
     {
-        $this->_boardStatus = $boardStatus;
+        $this->_status = $status;
     }
 
     // 新規設定用
-    public static function SetNew($boardStatus) {
-        if (!self::IsValid($boardStatus)) {
+    public static function SetNew($status) {
+        if (!self::IsValid($status)) {
             throw new Exception("ArgumentInvalidException");
         }
 
-        return new self($boardStatus);
+        return new self($status);
     }
 
     // リポジトリからの読み出し用
-    public static function Reconstruct($boardStatus) {
-        return new self($boardStatus);
+    public static function Reconstruct($status) {
+        return new self($status);
     }
 
-    private static function IsValid($boardStatus) {
-        $validator = Validator::make(['boardStatus' => $boardStatus], [
-            'boardStatus' => [
+    private static function IsValid($status) {
+        $validator = Validator::make(['status' => $status], [
+            'status' => [
                 'integer',
                 Rule::in([Config::get('const.status.open'),Config::get('const.status.close')]),
             ],

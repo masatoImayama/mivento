@@ -14,6 +14,7 @@ class eventDTO
             "description" => $event->getEventDescription()->getValue(),
             "event_start_datetime" => $event->getEventStartDatetime()->getValue(),
             "event_end_datetime" => $event->getEventEndDatetime()->getValue(),
+            "status" => $event->getStatus()->getValue(),
         );
 
         return $arr;

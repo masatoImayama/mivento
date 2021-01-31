@@ -5,13 +5,8 @@ namespace App\Http\Controllers;
 use Exception;
 
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Auth;
 
-use App\Domain\ValueObject\userId;
-
-use App\Repositories\EventRepository;
-use App\Http\DTO\eventDTO;
-
+use App\ApplicationService\BoardApplicationService;
 use App\ApplicationService\EventApplicationService;
 use App\ApplicationService\Commands\EventRegistCommand;
 use App\ApplicationService\Commands\EventDeleteCommand;
@@ -19,24 +14,28 @@ use App\ApplicationService\Commands\EventDeleteCommand;
 class EventController extends Controller
 {
 
-	public function index()
+	public function index($hash_key)
 	{
+		$board = BoardApplicationService::findBoard($hash_key);
+
 		return view('event.events')->with([
+			'board' => $board
 		]);
 	}
 
-	public function eventForm($hash_key = null) {
-		if ($hash_key === null) {
+	public function eventForm($board_hash_key, $event_hash_key = null) {
+		if ($event_hash_key === null) {
 			// 新規追加
 			$event = array();
 		} else {
 			// 編集
-			$event = array();
-			$event = EventRepository::find($hash_key);
-			$event = eventDTO::convert($event);
+			$event = EventApplicationService::findEvent($event_hash_key);
 		}
 
-		return view('event.event_form')->with($event);
+		return view('event.event_form')->with([
+			'event' => $event,
+			'board_hash_key' => $board_hash_key
+		]);
 	}
 
 	public function eventConfirm(Request $request) {
@@ -44,8 +43,8 @@ class EventController extends Controller
 		$validatedData = $request->validate([
 			'event_name' => 'required|string|max:256',
 			'description' => 'nullable|string|max:1500',
-			'event_start_datetime' => 'required|date_format',
-			'event_end_datetime' => 'required|date_format|after_or_equal:event_start_datetime',
+			'event_start_datetime' => 'required|date_format:Y-m-d H:i',
+			'event_end_datetime' => 'required|date_format:Y-m-d H:i|after_or_equal:event_start_datetime',
 		]);
 
 		return view('event.event_confirm')->with($request->all());
@@ -58,14 +57,15 @@ class EventController extends Controller
 			}
 
 			$command = new EventRegistCommand(
+				$request->input("board_hash_key"),
 				$request->input("event_name"), 
 				$request->input("description"),
 				$request->input("event_start_datetime"),
 				$request->input("event_end_datetime")
 			);
-			if (!empty($request->input("hash_key"))) {
+			if (!empty($request->input("event_hash_key"))) {
 				// 更新処理
-				EventApplicationService::updateEvent($request->input("hash_key"), $command);
+				EventApplicationService::updateEvent($request->input("event_hash_key"), $command);
 			} else {
 				// 登録処理
 				EventApplicationService::addEvent($command);
@@ -81,12 +81,12 @@ class EventController extends Controller
 	public function eventDelete(Request $request) {
 		// パラメータチェック
 		$validatedData = $request->validate([
-			'hash_key' => 'required',
+			'event_hash_key' => 'required',
 		]);
 
 		// 削除
 		try {
-			$command = new EventDeleteCommand($request->input("hash_key"));
+			$command = new EventDeleteCommand($request->input("event_hash_key"));
 			EventApplicationService::delete($command);
 
 			return redirect('events');

@@ -15,9 +15,10 @@ class Event extends Model
      * @var array
      */
     protected $fillable = [
-        'id_board',
+        'board_hash_code',
         'event_name',
         'description',
+        'status',
         'event_start_datetime',
         'event_end_datetime',
         'hash_key',

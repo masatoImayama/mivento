@@ -7,21 +7,40 @@ use Illuminate\Support\Facades\Config;
 use Illuminate\Support\Facades\Auth;
 
 use App\ApplicationService\Commands\BoardRegistCommand;
-use App\ApplicationService\Commands\BoardStatusChangeCommand;
+use App\ApplicationService\Commands\StatusChangeCommand;
 use App\ApplicationService\Commands\BoardDeleteCommand;
 
 use App\Domain\Entity\BoardEntity;
 use App\Domain\ValueObject\boardHashCode;
 use App\Domain\ValueObject\boardName;
 use App\Domain\ValueObject\boardDescription;
-use App\Domain\ValueObject\boardStatus;
+use App\Domain\ValueObject\status;
 
 use App\Domain\ValueObject\userId;
 
 use App\Repositories\BoardRepository;
+use App\Http\DTO\boardDTO;
 
 class BoardApplicationService
 {
+    public static function findBoard($hash_key) {
+        $board = BoardRepository::find($hash_key);
+        $board = boardDTO::convert($board);
+
+        return $board;
+    }
+
+    public static function getBoardList() {
+        $userId = userId::Reconstruct(Auth::user()->id);
+        $boards = BoardRepository::getBoardList($userId);
+
+        // 画面用に加工
+		$boards_collection = collect();
+		foreach ($boards as $key => $val) {
+			$boards_collection->push(boardDTO::convert($val));
+        }
+        return $boards_collection;
+    }
 
     public static function addBoard(BoardRegistCommand $command) {
         try {
@@ -29,7 +48,7 @@ class BoardApplicationService
                 boardHashCode::SetNew(userId::SetNew(Auth::user()->id)),
                 boardName::SetNew($command->getBoardName()),
                 boardDescription::SetNew($command->getDescription()),
-                boardStatus::SetNew(Config::get('const.status.open')) // デフォルトは「公開」状態
+                status::SetNew(Config::get('const.status.open')) // デフォルトは「公開」状態
             );
 
             $userId = userId::Reconstruct(Auth::user()->id);
@@ -64,7 +83,7 @@ class BoardApplicationService
         }
     }
 
-    public static function statusChange(BoardStatusChangeCommand $command) {
+    public static function statusChange(StatusChangeCommand $command) {
         try {
             // 対象のボードを検索
             $board = BoardRepository::find($command->getHashKey());

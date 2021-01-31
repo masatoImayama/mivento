@@ -4,7 +4,7 @@ namespace App\ApplicationService\Commands;
 use Exception;
 
 
-class BoardStatusChangeCommand
+class StatusChangeCommand
 {
     private $hash_key;
     private $status;
@@ -17,7 +17,7 @@ class BoardStatusChangeCommand
 
     public function getHashKey() {
         return $this->hash_key;
-    }
+    }   
 
     public function getStatus() {
         return $this->status;

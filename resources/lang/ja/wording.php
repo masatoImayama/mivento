@@ -24,7 +24,8 @@ return [
     'event_name' => 'イベント名',
     'header_image' => 'ヘッダー画像',
     'header_image_preview' => 'プレビュー',
-    'schedule' => '日程',
+    'start_datetime' => '開始日時',
+    'end_datetime' => '終了日時',
     'overview' => 'イベント概要',
 
 ];

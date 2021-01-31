@@ -5,12 +5,14 @@ namespace App\Repositories;
 use App\Models\Board;
 
 use App\Domain\Entity\BoardEntity;
-
+use App\Domain\Entity\EventEntity;
 use App\Domain\ValueObject\userId;
 use App\Domain\ValueObject\boardHashCode;
 use App\Domain\ValueObject\boardName;
 use App\Domain\ValueObject\boardDescription;
-use App\Domain\ValueObject\boardStatus;
+use App\Domain\ValueObject\status;
+
+use App\Repositories\EventRepository;
 
 class BoardRepository
 {
@@ -19,10 +21,9 @@ class BoardRepository
 
         $rtn_collection = collect();
         foreach ($user_boards as $key => $val) {
-            $board = self::boardEntityReconstruct($val);
+            $board = self::find($val->hash_key);
             $rtn_collection->push($board);
         }
-
         return $rtn_collection;
     }
 
@@ -33,7 +34,10 @@ class BoardRepository
             return null;
         }
 
-        return self::boardEntityReconstruct($board);
+        // 紐付くイベントを取得
+        $events = EventRepository::getEventList(boardHashCode::Reconstruct($board->hash_key));
+
+        return self::boardEntityReconstruct($board, $events);
     }
 
     public static function add(userId $userId, BoardEntity $boardEntity) {
@@ -64,11 +68,13 @@ class BoardRepository
         $board->delete();
     }
 
-    private static function boardEntityReconstruct($board) {
+    private static function boardEntityReconstruct($board, $events) {
         return BoardEntity::Reconstruct(
             boardHashCode::Reconstruct($board->hash_key),
             boardName::Reconstruct($board->board_name),
             boardDescription::Reconstruct($board->description),
-            boardStatus::Reconstruct($board->status));
+            status::Reconstruct($board->status),
+            $events
+        );
     }
 }

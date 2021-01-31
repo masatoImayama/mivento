@@ -105,7 +105,7 @@
 
 
                                     </td>
-                                    <td><input type="button" name="delete" value="{{ __('wording.edit') }}" onclick="board_edit('{{{ $board['hash_key'] }}}');" /></td>
+                                    <td><input type="button" name="edit" value="{{ __('wording.edit') }}" onclick="board_edit('{{{ $board['hash_key'] }}}');" /></td>
                                     <td><input type="button" name="delete" value="{{ __('wording.delete') }}" onclick="board_delete('{{{ $board['hash_key'] }}}');" /></td>
                                 </tr>
                                 @endforeach

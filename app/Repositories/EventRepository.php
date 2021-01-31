@@ -5,21 +5,22 @@ namespace App\Repositories;
 use App\Models\Event;
 
 use App\Domain\Entity\EventEntity;
-
+use App\Domain\ValueObject\boardHashCode;
 use App\Domain\ValueObject\userId;
 use App\Domain\ValueObject\eventHashCode;
 use App\Domain\ValueObject\eventName;
 use App\Domain\ValueObject\eventDescription;
 use App\Domain\ValueObject\eventStartDatetime;
 use App\Domain\ValueObject\eventEndDatetime;
+use App\Domain\ValueObject\status;
 
 class EventRepository
 {
-    public static function getEventList(userId $userId) {
-        $user_events = Event::where('created_by', $userId->getValue())->get();
+    public static function getEventList(boardHashCode $boardHashCode) {
+        $events = Event::where('board_hash_code', $boardHashCode->getValue())->get();
 
         $rtn_collection = collect();
-        foreach ($user_events as $key => $val) {
+        foreach ($events as $key => $val) {
             $event = self::eventEntityReconstruct($val);
             $rtn_collection->push($event);
         }
@@ -44,6 +45,7 @@ class EventRepository
             'hash_key' => $eventEntity->getEventHashCode()->getValue(),
             'event_name' => $eventEntity->getEventName()->getValue(),
             'description' => $eventEntity->getEventDescription()->getValue(),
+            'status' => $eventEntity->getStatus()->getValue(),
             'event_start_date' => $eventEntity->getEventStartDatetime()->getValue(),
             'event_end_date' => $eventEntity->getEventEndDatetime()->getValue(),
             'created_by' => $userId->getValue()
@@ -73,7 +75,8 @@ class EventRepository
             eventName::Reconstruct($event->event_name),
             eventDescription::Reconstruct($event->description),
             eventStartDatetime::Reconstruct($event->event_start_datetime),
-            eventEndDatetime::Reconstruct($event->event_end_datetime)
+            eventEndDatetime::Reconstruct($event->event_end_datetime),
+            status::Reconstruct($event->status)
         );
     }
 }
