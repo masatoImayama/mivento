@@ -38,7 +38,7 @@ class boardDescription
 
     private static function IsValid($boardDescription) {
         $validator = Validator::make(['boardDescription' => $boardDescription], [
-            'boardDescription' => 'string|max:5000',
+            'boardDescription' => 'nullable|string|max:5000',
         ]);
 
         return !$validator->fails();

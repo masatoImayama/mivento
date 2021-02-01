@@ -38,7 +38,7 @@ class eventDescription
 
     private static function IsValid($eventDescription) {
         $validator = Validator::make(['eventDescription' => $eventDescription], [
-            'eventDescription' => 'string|max:5000',
+            'eventDescription' => 'nullable|string|max:5000',
         ]);
 
         return !$validator->fails();

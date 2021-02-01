@@ -12,6 +12,8 @@ return [
     'open' => '公開',
     'close' => '非公開',
 
+    'registration_count' => '登録件数:',
+
     // menu
     'menu_boards' => 'ボード一覧',
 
@@ -21,9 +23,11 @@ return [
     'board_description' => 'ボード概要',
         
     // event
+    'event' => 'イベント',
     'event_name' => 'イベント名',
     'header_image' => 'ヘッダー画像',
     'header_image_preview' => 'プレビュー',
+    'schedule' => '日程',
     'start_datetime' => '開始日時',
     'end_datetime' => '終了日時',
     'event_description' => 'イベント概要',

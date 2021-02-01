@@ -92,7 +92,7 @@ class EventApplicationService
             $event = EventRepository::find($command->getHashKey());
 
             if ($event === null) {
-                throw new Exception("board not found.");
+                throw new Exception("event not found.");
             }
 
             // ステータス変更

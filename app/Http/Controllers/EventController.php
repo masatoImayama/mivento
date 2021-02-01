@@ -6,6 +6,7 @@ use Exception;
 
 use Illuminate\Http\Request;
 
+use App\ApplicationService\Commands\StatusChangeCommand;
 use App\ApplicationService\BoardApplicationService;
 use App\ApplicationService\EventApplicationService;
 use App\ApplicationService\Commands\EventRegistCommand;
@@ -79,18 +80,41 @@ class EventController extends Controller
 		}
 	}
 
+	public function statusChange(Request $request) {
+		// パラメータチェック
+		$validatedData = $request->validate([
+			'board_hash_key' => 'required',
+			'event_hash_key' => 'required',
+			'status' => 'required',
+		]);
+
+		// ステータス変更
+		try {
+			$board_hash_key = $request->input("board_hash_key");
+			$command = new StatusChangeCommand($request->input("event_hash_key"), $request->input("status"));
+			EventApplicationService::statusChange($command);
+
+			return redirect()->route('events', ['hash_key' => $board_hash_key]);
+		} catch (Exception $e) {
+			throw new Exception($e);
+		}
+
+	}
+
 	public function eventDelete(Request $request) {
 		// パラメータチェック
 		$validatedData = $request->validate([
+			'board_hash_key' => 'required',
 			'event_hash_key' => 'required',
 		]);
 
 		// 削除
 		try {
+			$board_hash_key = $request->input("board_hash_key");
 			$command = new EventDeleteCommand($request->input("event_hash_key"));
 			EventApplicationService::delete($command);
 
-			return redirect('events');
+			return redirect()->route('events', ['hash_key' => $board_hash_key]);
 		} catch (Exception $e) {
 			throw new Exception($e);
 		}

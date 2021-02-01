@@ -40,14 +40,17 @@ class EventRepository
 
     public static function add(userId $userId, EventEntity $eventEntity) {
         // 新規登録
+     
         $event_new = new Event();
         $event_new->create([
             'hash_key' => $eventEntity->getEventHashCode()->getValue(),
+            'board_hash_code' => $eventEntity->getBoardHashCode()->getValue(),
             'event_name' => $eventEntity->getEventName()->getValue(),
             'description' => $eventEntity->getEventDescription()->getValue(),
             'status' => $eventEntity->getStatus()->getValue(),
-            'event_start_date' => $eventEntity->getEventStartDatetime()->getValue(),
-            'event_end_date' => $eventEntity->getEventEndDatetime()->getValue(),
+            'event_start_datetime' => $eventEntity->getEventStartDatetime()->getValue(),
+            'event_end_datetime' => $eventEntity->getEventEndDatetime()->getValue(),
+            'hash_key' => $eventEntity->getEventHashCode()->getValue(),
             'created_by' => $userId->getValue()
         ]);            
     }
@@ -58,9 +61,10 @@ class EventRepository
         // 更新
         $event->event_name = $eventEntity->geteventName()->getValue();
         $event->description = $eventEntity->geteventDescription()->getValue();
-        $event->event_start_date = $eventEntity->getEventStartDatetime()->getValue();
-        $event->event_end_date = $eventEntity->getEventEndDatetime()->getValue();
-        $event->updated_by = $userId->getValue();   
+        $event->event_start_datetime = $eventEntity->getEventStartDatetime()->getValue();
+        $event->event_end_datetime = $eventEntity->getEventEndDatetime()->getValue();
+        $event->status = $eventEntity->getStatus()->getValue();
+        $event->updated_by = $userId->getValue();
         $event->save();    
     }
 
@@ -71,6 +75,7 @@ class EventRepository
 
     private static function eventEntityReconstruct($event) {
         return EventEntity::Reconstruct(
+            boardHashCode::Reconstruct($event->board_hash_code),
             eventHashCode::Reconstruct($event->hash_key),
             eventName::Reconstruct($event->event_name),
             eventDescription::Reconstruct($event->description),

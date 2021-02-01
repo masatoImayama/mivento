@@ -76,7 +76,12 @@
                         <div class="form-group row">
                             <div class="col-md-6"></div>
                             <div class="col-md-6 text-right">
+                                @if(count($boards) < config('const.board.registration_max')) 
+                                <p>{{ __('wording.registration_count') }}{{ count($boards) }}/{{ config('const.board.registration_max') }}</p>                                
                                 <input type="button" class="btn btn-outline-primary" style="width:100px;" value="{{ __('wording.add') }}" onclick="board_add();" />
+                                @else
+                                <p>{{ __('messages.registration_max', ['value' =>config('const.board.registration_max') ]) }}</p>
+                                @endif
                             </div>
                         </div>
 

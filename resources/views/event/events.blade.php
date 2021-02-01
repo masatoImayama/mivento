@@ -12,7 +12,7 @@
 
             var input_data = document.createElement('input');
             input_data.type = 'hidden';
-            input_data.name = 'hash_key';
+            input_data.name = 'event_hash_key';
             input_data.value = hash_key;
             document.form.appendChild(input_data);
 
@@ -35,7 +35,7 @@
 
             var input_data = document.createElement('input');
             input_data.type = 'hidden';
-            input_data.name = 'hash_key';
+            input_data.name = 'event_hash_key';
             input_data.value = hash_key;
             document.form.appendChild(input_data);
 
@@ -59,15 +59,22 @@
     <div class="row justify-content-center">
         <div class="col-md-10">
             <div class="card">
-                <div class="card-header">イベント一覧</div>
+                <div class="card-header">【{{$board['board_name']}}】イベント一覧</div>
 
                 <div class="card-body">
-                    <form method="POST" action="">
+                    <form method="POST" name="form" action="">
                         @csrf
                         <div class="form-group row">
                             <div class="col-md-6"></div>
                             <div class="col-md-6 text-right">
+                                @if(count($board['events']) < config('const.event.registration_max'))
+                                <p>{{ __('wording.registration_count') }}{{ count($board['events']) }}/{{ config('const.event.registration_max') }}</p>   
                                 <input type="button" class="btn btn-outline-primary" style="width:100px;" value="{{ __('wording.add') }}" onclick="event_add();" />
+                                @else
+                                <p>{{ __('messages.registration_max', ['value' =>config('const.event.registration_max') ]) }}</p>
+                                @endif
+
+
                             </div>
                         </div>
 

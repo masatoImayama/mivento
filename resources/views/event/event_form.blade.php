@@ -33,7 +33,7 @@
                             <label for="event_name" class="col-md-4 col-form-label text-md-right">{{ __('wording.event_name') }}</label>
 
                             <div class="col-md-6">
-                                <input id="event_name" type="text" class="form-control" name="event_name" value="{{ $event['event_name'] ?? old('event_name')}}" required placeholder="{{ __('wording.event_name') }}" />
+                                <input id="event_name" type="text" class="form-control" name="event_name" value="{{ old('event_name') ?? $event['event_name'] ?? '' }}" required placeholder="{{ __('wording.event_name') }}" />
                             </div>
                         </div>
 
@@ -57,7 +57,7 @@
                             <label for="event_start_datetime" class="col-md-4 col-form-label text-md-right">{{ __('wording.start_datetime') }}</label>
 
                             <div class="col-md-6">
-                                <input id="event_start_datetime" type="text" class="form-control" name="event_start_datetime" value="{{ $event['event_start_datetime'] ?? old('event_start_datetime')}}" required placeholder="{{ __('wording.start_datetime') }}" />
+                                <input id="event_start_datetime" type="text" class="form-control" name="event_start_datetime" value="{{ old('event_start_datetime') ?? $event['event_start_datetime'] ?? '' }}" required placeholder="{{ __('wording.start_datetime') }}" />
                             </div>
                         </div>
 
@@ -65,7 +65,7 @@
                             <label for="event_end_datetime" class="col-md-4 col-form-label text-md-right">{{ __('wording.end_datetime') }}</label>
 
                             <div class="col-md-6">
-                                <input id="event_end_datetime" type="text" class="form-control" name="event_end_datetime" value="{{ $event['event_end_datetime'] ?? old('event_end_datetime')}}"  placeholder="{{ __('wording.end_datetime') }}" />
+                                <input id="event_end_datetime" type="text" class="form-control" name="event_end_datetime" value="{{ old('event_end_datetime') ?? $event['event_end_datetime'] ?? '' }}"  placeholder="{{ __('wording.end_datetime') }}" />
                             </div>
                         </div>
 
@@ -73,7 +73,7 @@
                             <label for="description" class="col-md-4 col-form-label text-md-right">{{ __('wording.event_description') }}</label>
 
                             <div class="col-md-6">
-                                <textarea id="description" name="description" class="form-control" rows="15">{{ $event['description'] ?? old('description')}}</textarea>
+                                <textarea id="description" name="description" class="form-control" rows="15">{{ old('description') ?? $event['description'] ?? ''}}</textarea>
                             </div>
                         </div>
                     </div>
@@ -91,7 +91,7 @@
                     </div>
 
                     <input type="hidden" name="board_hash_key" value="{{ $board_hash_key }}">
-                    <input type="hidden" name="event_hash_key" value="{{ $event['hash_key'] ?? '' }}">
+                    <input type="hidden" name="event_hash_key" value="{{ old('event_hash_key') ?? $event['hash_key'] ?? '' }}">
                 </form>
             </div>
         </div>
