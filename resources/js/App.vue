@@ -1,6 +1,6 @@
 <template>
   <div id="nav">
-      <router-link to="/index">Index</router-link>
+      <router-link to="/entry/index">Index</router-link>
   </div>
   <p>App Vue !!</p>
   <router-view />

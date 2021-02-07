@@ -8,7 +8,7 @@ history: createWebHistory(),
 routes: [
     {
         // routeのパス設定
-        path: '/index',
+        path: '/entry/index',
         // 名前付きルートを設定したい場合付与
         name: 'index',
         // コンポーネントの指定
