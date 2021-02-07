@@ -39,7 +39,7 @@ Route::group(['middleware' => ['auth', 'web']], function() {
 
 });
 
-Route::group(['middleware' => ['web']], function(){
-    Route::get('/',[App\Http\Controllers\FrontController::class, 'index'])->name('front.root');
-});
+Route::get('/entry/{any}', function () {
+    return view('front.index');
+})->where('any', '.*');
 
