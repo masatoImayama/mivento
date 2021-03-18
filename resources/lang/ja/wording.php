@@ -32,4 +32,6 @@ return [
     'end_datetime' => '終了日時',
     'event_description' => 'イベント概要',
 
+    // entry
+
 ];

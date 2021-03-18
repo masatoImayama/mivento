@@ -39,7 +39,6 @@ Route::group(['middleware' => ['auth', 'web']], function() {
 
 });
 
-Route::get('/entry/{any}', function () {
-    return view('front.index');
-})->where('any', '.*');
-
+Route::group(['middleware' => ['web']], function() {
+    Route::get('/entry/{hash_key}', [App\Http\Controllers\EntryController::class, 'index'])->name('entry');
+});
