@@ -88,60 +88,31 @@
             <table class="table">
                 <thead>
                     <tr>
-                        <th>順位</th>
-                        <th>名前</th>
-                        <th>惑星</th>
-                        <th>勝点</th>
-                        <th>試合数</th>
-                        <th>勝数</th>
-                        <th>引分数</th>
+                        <th class="col-md-2">お名前</th>
+                        <th class="col-md-2 text-center">参加回答</th>
+                        <th class="col-md-8">コメント</th>
                     </tr>
                 </thead>
                 <tbody>
                     <tr>
-                        <th>1</th>
-                        <td>ブルーＳＣ</td>
-                        <td>地球</td>
-                        <td>101</td>
-                        <td>42</td>
-                        <td>31</td>
-                        <td>8</td>
+                        <th><a href="#">いまっち</a></th>
+                        <td class="text-center">○</td>
+                        <td>途中参加になります～</td>
                     </tr>
                     <tr>
-                        <th>2</th>
-                        <td>ＦＣウェヌス</td>
-                        <td>金星</td>
-                        <td>83</td>
-                        <td>42</td>
-                        <td>24</td>
-                        <td>11</td>
+                        <th><a href="#">いまっち</a></th>
+                        <td class="text-center">○</td>
+                        <td>途中参加になります～</td>
                     </tr>
                     <tr>
-                        <th>3</th>
-                        <td>ジュピターＦＣ</td>
-                        <td>木星</td>
-                        <td>68</td>
-                        <td>42</td>
-                        <td>18</td>
-                        <td>14</td>
+                        <th><a href="#">いまっち</a></th>
+                        <td class="text-center">○</td>
+                        <td>途中参加になります～</td>
                     </tr>
                     <tr>
-                        <th>4</th>
-                        <td>ＳＣマーキュリー</td>
-                        <td>水星</td>
-                        <td>67</td>
-                        <td>42</td>
-                        <td>18</td>
-                        <td>13</td>
-                    </tr>
-                    <tr>
-                        <th>5</th>
-                        <td>ＦＣマルス</td>
-                        <td>火星</td>
-                        <td>65</td>
-                        <td>42</td>
-                        <td>18</td>
-                        <td>11</td>
+                        <th><a href="#">いまっち</a></th>
+                        <td class="text-center">○</td>
+                        <td>途中参加になります～</td>
                     </tr>
                 </tbody>
             </table>
@@ -161,84 +132,62 @@
                 </div> <!-- end row -->
         </div>
 
-        <div class="space"></div>
-
-        {{-- <div id="acordeon">
+        <div id="acordeon">
 
             <div class="panel-group" id="accordion">
               <div class="panel panel-default">
                 <div class="panel-heading">
                   <h4 class="panel-title">
-                    <a data-target="#collapseOne" href="#collapseOne" data-toggle="gsdk-collapse">
-                      GSDK Collapsible Item 1
-                    </a>
-                  </h4>
-                </div>
-                <div id="collapseOne" class="panel-collapse collapse">
-                  <div class="panel-body">
-                    Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson ad squid. 3 wolf moon officia aute, non cupidatat skateboard dolor brunch. Food truck quinoa nesciunt laborum eiusmod. Brunch 3 wolf moon tempor, sunt aliqua put a bird on it squid single-origin coffee nulla assumenda shoreditch et. Nihil anim keffiyeh helvetica, craft beer labore wes anderson cred nesciunt sapiente ea proident. Ad vegan excepteur butcher vice lomo. Leggings occaecat craft beer farm-to-table, raw denim aesthetic synth nesciunt you probably haven't heard of them accusamus labore sustainable VHS.
-                  </div>
-                </div>
-              </div>
-              <div class="panel panel-default">
-                <div class="panel-heading">
-                  <h4 class="panel-title">
-                    <a data-target="#collapseTwo" href="#collapseTwo" data-toggle="gsdk-collapse">
-                      GSDK Collapsible Item 2
-                    </a>
-                  </h4>
-                </div>
-                <div id="collapseTwo" class="panel-collapse collapse">
-                  <div class="panel-body">
-                    Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson ad squid. 3 wolf moon officia aute, non cupidatat skateboard dolor brunch. Food truck quinoa nesciunt laborum eiusmod. Brunch 3 wolf moon tempor, sunt aliqua put a bird on it squid single-origin coffee nulla assumenda shoreditch et. Nihil anim keffiyeh helvetica, craft beer labore wes anderson cred nesciunt sapiente ea proident. Ad vegan excepteur butcher vice lomo. Leggings occaecat craft beer farm-to-table, raw denim aesthetic synth nesciunt you probably haven't heard of them accusamus labore sustainable VHS.
-                  </div>
-                </div>
-              </div>
-              <div class="panel panel-default">
-                <div class="panel-heading">
-                  <h4 class="panel-title">
-                    <a data-target="#collapseThree" href="#collapseTwo" data-toggle="gsdk-collapse">
-                      GSDK Collapsible Item 3
-                    </a>
-                  </h4>
-                </div>
-                <div id="collapseThree" class="panel-collapse collapse">
-                  <div class="panel-body">
-                    Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson ad squid. 3 wolf moon officia aute, non cupidatat skateboard dolor brunch. Food truck quinoa nesciunt laborum eiusmod. Brunch 3 wolf moon tempor, sunt aliqua put a bird on it squid single-origin coffee nulla assumenda shoreditch et. Nihil anim keffiyeh helvetica, craft beer labore wes anderson cred nesciunt sapiente ea proident. Ad vegan excepteur butcher vice lomo. Leggings occaecat craft beer farm-to-table, raw denim aesthetic synth nesciunt you probably haven't heard of them accusamus labore sustainable VHS.
-                  </div>
-                </div>
-              </div>
-              <div class="panel panel-default">
-                <div class="panel-heading">
-                  <h4 class="panel-title">
                     <a data-toggle="collapse" href="#collapseFour">
-                      Default Collapsible Item 1
+                      入力
                     </a>
                   </h4>
                 </div>
-                <div id="collapseFour" class="panel-collapse collapse">
+                <div id="collapseFour" class="panel-collapse in">
                   <div class="panel-body">
-                    Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson ad squid. 3 wolf moon officia aute, non cupidatat skateboard dolor brunch. Food truck quinoa nesciunt laborum eiusmod. Brunch 3 wolf moon tempor, sunt aliqua put a bird on it squid single-origin coffee nulla assumenda shoreditch et. Nihil anim keffiyeh helvetica, craft beer labore wes anderson cred nesciunt sapiente ea proident. Ad vegan excepteur butcher vice lomo. Leggings occaecat craft beer farm-to-table, raw denim aesthetic synth nesciunt you probably haven't heard of them accusamus labore sustainable VHS.
-                  </div>
-                </div>
-              </div>
-              <div class="panel panel-default">
-                <div class="panel-heading">
-                  <h4 class="panel-title">
-                    <a data-toggle="collapse" href="#collapseFive">
-                      Default Collapsible Item 2
-                    </a>
-                  </h4>
-                </div>
-                <div id="collapseFive" class="panel-collapse collapse">
-                  <div class="panel-body">
-                    Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson ad squid. 3 wolf moon officia aute, non cupidatat skateboard dolor brunch. Food truck quinoa nesciunt laborum eiusmod. Brunch 3 wolf moon tempor, sunt aliqua put a bird on it squid single-origin coffee nulla assumenda shoreditch et. Nihil anim keffiyeh helvetica, craft beer labore wes anderson cred nesciunt sapiente ea proident. Ad vegan excepteur butcher vice lomo. Leggings occaecat craft beer farm-to-table, raw denim aesthetic synth nesciunt you probably haven't heard of them accusamus labore sustainable VHS.
+
+                     <div class="tim-typo">
+                        <p>
+                          <span class="tim-note">お名前</span>
+                          <div class="form-group">
+                            <input type="text" value="" placeholder="Name" class="form-control" />
+                          </div>
+                        </p>
+                    </div>
+
+                     <div class="tim-typo">
+                        <p>
+                          <span class="tim-note">参加回答</span>
+                          <div class="switch"
+                            data-on-label="<i class='fa fa-check'></i>"
+                            data-off-label="<i class='fa fa-times'></i>">
+                            <input type="checkbox" checked/>
+                          </div>
+                        </p>
+                      </div>
+
+                      <div class="tim-typo">
+                        <p>
+                          <span class="tim-note">コメント</span>
+                          <textarea id="description" name="description" class="form-control" rows="3"></textarea>
+                        </p>
+                      </div>
+
+                      <div class="col-md-4"></div>
+                      <div class="col-md-4">
+                        <button href="#fakelink" class="btn btn-block btn-lg btn-info btn-fill">登録</button>
+                      </div>
+                      <div class="col-md-4"></div>
                   </div>
                 </div>
               </div>
             </div>
 
-        </div><!--  end acordeon --> --}}
+        </div><!--  end acordeon -->
+
+        
+        <div class="space"></div>
+
     </div>
 </div>
 
